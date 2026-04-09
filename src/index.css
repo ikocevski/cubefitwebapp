@@ -10,7 +10,7 @@
   --shadow: 0 20px 70px rgba(2, 6, 20, 0.55);
   --radius: 18px;
   --radius-sm: 12px;
-  --container: 1160px;
+  --container: 1360px;
   --font: "Inter", "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   color: var(--text);
   background: var(--bg);
@@ -69,9 +69,10 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem clamp(1rem, 2.6vw, 2rem);
   margin-inline: auto;
-  width: min(100%, var(--container));
+  width: 100%;
+  max-width: none;
   backdrop-filter: blur(16px);
   background: rgba(7, 10, 17, 0.72);
   border-bottom: 1px solid rgba(160, 196, 255, 0.18);
@@ -113,9 +114,10 @@ nav a:hover {
 
 main,
 .site-footer {
-  width: min(100%, var(--container));
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 0;
 }
 
 .hero,
@@ -134,7 +136,9 @@ main,
 }
 
 .hero {
-  padding: 4.4rem 0 2rem;
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  padding: 4.4rem clamp(1rem, 2.6vw, 2rem) 2rem;
 }
 
 .eyebrow {
@@ -261,7 +265,9 @@ h1 {
 }
 
 .section {
-  padding: 3.2rem 0;
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  padding: 3.2rem clamp(1rem, 2.6vw, 2rem);
 }
 
 .section-head {
@@ -477,6 +483,8 @@ h1 {
 }
 
 .site-footer {
+  width: min(100%, var(--container));
+  padding-inline: clamp(1rem, 2.6vw, 2rem);
   padding-top: 1rem;
   padding-bottom: 2.2rem;
   border-top: 1px solid rgba(160, 196, 255, 0.12);
