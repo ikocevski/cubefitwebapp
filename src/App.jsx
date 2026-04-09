@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { id: "how-it-works", label: "How It Works" },
@@ -266,6 +266,8 @@ const mealImportPreviewRow =
   'Greek Yogurt Berry Bowl,High-protein breakfast with berries,320,28,36,7,"Greek yogurt; mixed berries; granola; honey",,';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   useEffect(() => {
     const elements = document.querySelectorAll("[data-reveal]");
     const observer = new IntersectionObserver(
@@ -283,6 +285,16 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <>
       <header className="site-header">
@@ -296,7 +308,21 @@ function App() {
           />
           <span>CUBEFIT</span>
         </a>
-        <nav aria-label="Primary navigation">
+        <button
+          type="button"
+          className="mobile-nav-toggle"
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMenuOpen((value) => !value)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav className="desktop-nav" aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a key={link.id} href={`#${link.id}`}>
               {link.label}
@@ -304,6 +330,41 @@ function App() {
           ))}
         </nav>
       </header>
+
+      {isMenuOpen ? (
+        <>
+          <button
+            type="button"
+            className="mobile-nav-backdrop"
+            aria-label="Close navigation menu"
+            onClick={closeMenu}
+          />
+          <aside
+            id="mobile-navigation"
+            className="mobile-nav-panel"
+            aria-label="Mobile primary navigation"
+          >
+            <div className="mobile-nav-panel-header">
+              <span>Menu</span>
+              <button
+                type="button"
+                className="mobile-nav-close"
+                onClick={closeMenu}
+                aria-label="Close navigation menu"
+              >
+                ×
+              </button>
+            </div>
+            <nav className="mobile-nav-links">
+              {navLinks.map((link) => (
+                <a key={link.id} href={`#${link.id}`} onClick={closeMenu}>
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </aside>
+        </>
+      ) : null}
 
       <main id="top">
         <section className="hero" data-reveal>
