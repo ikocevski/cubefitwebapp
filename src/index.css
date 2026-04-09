@@ -52,6 +52,11 @@ a {
   text-decoration: none;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -521,17 +526,64 @@ h1 {
     padding: 0.9rem 1rem;
   }
 
+  .site-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
   nav {
+    display: flex;
+    width: 100%;
+    gap: 0.55rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x proximity;
+  }
+
+  nav::-webkit-scrollbar {
     display: none;
+  }
+
+  nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(185, 211, 255, 0.18);
+    background: rgba(10, 15, 25, 0.72);
+    scroll-snap-align: start;
   }
 
   main,
   .site-footer {
-    padding-inline: 1rem;
+    padding-inline: 0.95rem;
   }
 
   .hero {
-    padding-top: 2.8rem;
+    padding-top: 2.2rem;
+  }
+
+  h1 {
+    max-width: 11ch;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 36ch;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+  }
+
+  .btn,
+  .btn-ghost {
+    width: 100%;
   }
 
   .hero-grid,
@@ -547,5 +599,130 @@ h1 {
 
   .video-panel {
     gap: 0.9rem;
+  }
+
+  .glass-card,
+  .panel,
+  .comparison-card,
+  .feature-card,
+  .screen-card,
+  .faq-card,
+  .video-panel,
+  .cta,
+  .pill-card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .mockup {
+    min-height: 0;
+  }
+
+  .hero-grid {
+    gap: 0.85rem;
+  }
+
+  .feature-grid,
+  .screen-grid,
+  .faq-grid,
+  .split-grid,
+  .comparison-grid,
+  .pill-grid,
+  .video-panel {
+    gap: 0.85rem;
+  }
+
+  .schema-code {
+    font-size: 0.73rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .footer-links {
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 0.8rem 0.85rem 0.7rem;
+    border-bottom-color: rgba(160, 196, 255, 0.14);
+  }
+
+  .brand-mark {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+  }
+
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  main,
+  .site-footer {
+    padding-inline: 0.8rem;
+  }
+
+  .hero {
+    padding: 1.85rem 0 1.3rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    letter-spacing: -0.04em;
+  }
+
+  .section {
+    padding: 2.2rem 0;
+  }
+
+  .section h2 {
+    max-width: 18ch;
+    line-height: 1.12;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .hero-grid {
+    margin-top: 1.15rem;
+  }
+
+  .mockup h3,
+  .section h3 {
+    font-size: 1rem;
+  }
+
+  .mockup p,
+  .section p,
+  .section li,
+  .site-footer p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .panel ol,
+  .comparison-card ul,
+  .feature-card ul,
+  .import-list {
+    padding-left: 1rem;
+  }
+
+  .screen-card p {
+    font-size: 0.9rem;
+  }
+
+  .video-thumb {
+    height: 120px;
+  }
+
+  .video-thumb span {
+    width: 46px;
+    height: 46px;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
   }
 }
