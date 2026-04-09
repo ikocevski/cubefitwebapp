@@ -57,6 +57,10 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -174,6 +178,12 @@ a {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.mobile-nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .mobile-nav-close {
@@ -380,6 +390,10 @@ h1 {
   gap: 1rem;
 }
 
+.import-grid {
+  align-items: stretch;
+}
+
 .panel,
 .comparison-card,
 .feature-card,
@@ -437,6 +451,10 @@ h1 {
   color: #b7ddff;
   font-size: 0.8rem;
   font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+}
+
+.schema-wrap {
+  line-height: 1.5;
 }
 
 .pill-grid {
@@ -718,6 +736,12 @@ h1 {
     padding: 0.55rem 0.7rem;
   }
 
+  .schema-wrap {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   .footer-links {
     gap: 0.6rem;
   }
@@ -743,6 +767,15 @@ h1 {
     width: 42px;
     height: 42px;
     border-radius: 12px;
+  }
+
+  .mobile-nav-panel {
+    width: min(90vw, 360px);
+    padding: 0.9rem;
+  }
+
+  .mobile-nav-links a {
+    padding: 0.88rem 0.95rem;
   }
 
   main,

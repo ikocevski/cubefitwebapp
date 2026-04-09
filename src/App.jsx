@@ -293,6 +293,22 @@ function App() {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    if (isMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -345,7 +361,16 @@ function App() {
             aria-label="Mobile primary navigation"
           >
             <div className="mobile-nav-panel-header">
-              <span>Menu</span>
+              <div className="mobile-nav-brand">
+                <img
+                  className="brand-logo"
+                  src="/2.png"
+                  alt="CubeFit logo"
+                  width="30"
+                  height="30"
+                />
+                <span>Menu</span>
+              </div>
               <button
                 type="button"
                 className="mobile-nav-close"
@@ -511,7 +536,7 @@ function App() {
             <p className="eyebrow">Nutrition Import System</p>
             <h2>Bulk meal import is a core CubeFit coaching workflow.</h2>
           </div>
-          <div className="split-grid">
+          <div className="split-grid import-grid">
             <article className="panel import-panel">
               <h3>Import in minutes, not hours</h3>
               <p>
@@ -550,9 +575,13 @@ function App() {
                 admin dashboard and client-facing meal cards.
               </p>
               <p className="schema-label">Required header order:</p>
-              <code className="schema-code">{mealImportColumns.join(",")}</code>
+              <code className="schema-code schema-wrap">
+                {mealImportColumns.join(",")}
+              </code>
               <p className="schema-label">Sample row:</p>
-              <code className="schema-code">{mealImportPreviewRow}</code>
+              <code className="schema-code schema-wrap">
+                {mealImportPreviewRow}
+              </code>
             </article>
           </div>
         </section>
