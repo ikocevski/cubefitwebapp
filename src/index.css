@@ -719,11 +719,7 @@ h1 {
   padding-bottom: 2.8rem;
   border-top: 1px solid rgba(67, 184, 255, 0.2);
   scroll-margin-top: 104px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(33, 214, 166, 0.08)
-  );
+  background: linear-gradient(180deg, transparent, rgba(33, 214, 166, 0.08));
 }
 
 .site-footer strong {
