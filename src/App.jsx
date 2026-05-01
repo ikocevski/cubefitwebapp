@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const navLinks = [
   { id: "how-it-works", label: "How It Works" },
@@ -267,6 +267,7 @@ const mealImportPreviewRow =
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
     const elements = document.querySelectorAll("[data-reveal]");
@@ -307,9 +308,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isMenuOpen]);
-
-  const closeMenu = () => setIsMenuOpen(false);
+  }, [isMenuOpen, closeMenu]);
 
   return (
     <>
