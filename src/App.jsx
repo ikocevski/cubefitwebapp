@@ -31,6 +31,59 @@ const clientTools = [
   "Notification awareness for training, check-ins, and nutrition timing",
 ];
 
+const FeatureIcon = ({ name }) => {
+  const paths = {
+    workouts: (
+      <>
+        <path d="M6 12h12" />
+        <path d="M4 9v6" />
+        <path d="M20 9v6" />
+        <path d="M8 7v10" />
+        <path d="M16 7v10" />
+      </>
+    ),
+    nutrition: (
+      <>
+        <path d="M12 3c4 2 6 5 6 9a6 6 0 1 1-12 0c0-4 2-7 6-9z" />
+        <path d="M12 8v6" />
+        <path d="M9 11h6" />
+      </>
+    ),
+    progress: (
+      <>
+        <path d="M3 17l5-5 4 4 8-8" />
+        <path d="M14 8h6v6" />
+      </>
+    ),
+    notifications: (
+      <>
+        <path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2H4.5L6 16z" />
+        <path d="M10 20a2 2 0 0 0 4 0" />
+      </>
+    ),
+    subscriptions: (
+      <>
+        <rect x="3" y="6" width="18" height="13" rx="2" />
+        <path d="M3 10h18" />
+        <path d="M7 15h4" />
+      </>
+    ),
+    analytics: (
+      <>
+        <path d="M4 20V10" />
+        <path d="M10 20V4" />
+        <path d="M16 20v-7" />
+        <path d="M22 20H2" />
+      </>
+    ),
+  };
+  return (
+    <span className="feature-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">{paths[name]}</svg>
+    </span>
+  );
+};
+
 const featureGrid = [
   {
     id: "workouts",
@@ -106,121 +159,49 @@ const featureGrid = [
   },
 ];
 
-const screens = [
-  [
-    "Login",
-    "Client + Coach",
-    "Secure sign-in and account handoff",
-    "Starts a trusted role-based journey.",
-  ],
-  [
-    "Sign Up",
-    "New Users",
-    "Create account and initiate onboarding",
-    "Captures intent and begins conversion flow.",
-  ],
-  [
-    "Role Selection",
-    "All Users",
-    "Choose coach/admin or client path",
-    "Routes users into the right experience.",
-  ],
-  [
-    "Complete Signup",
-    "All Users",
-    "Finish profile and account setup",
-    "Collects foundational data for personalization.",
-  ],
-  [
-    "Approval Pending",
-    "Clients",
-    "Wait for coach/admin approval",
-    "Protects premium access and member quality.",
-  ],
-  [
-    "Admin Dashboard",
-    "Coach/Admin",
-    "View platform health and client activity",
-    "Central command for coaching operations.",
-  ],
-  [
-    "Manage Clients",
-    "Coach/Admin",
-    "Add, edit, and organize clients",
-    "Keeps relationships structured and scalable.",
-  ],
-  [
-    "Manage Workouts",
-    "Coach/Admin",
-    "Create and assign training plans",
-    "Turns strategy into executable training.",
-  ],
-  [
-    "Manage Diets",
-    "Coach/Admin",
-    "Build plans and meal libraries",
-    "Aligns nutrition with transformation goals.",
-  ],
-  [
-    "Analytics",
-    "Coach/Admin",
-    "Analyze progress and adherence",
-    "Enables smarter weekly coaching decisions.",
-  ],
-  [
-    "Subscription Management",
-    "Coach/Admin",
-    "Control trial and paid statuses",
-    "Maintains clean premium access governance.",
-  ],
-  [
-    "Users Management",
-    "Admin",
-    "Manage platform users and permissions",
-    "Supports secure growth at scale.",
-  ],
-  [
-    "Client Home",
-    "Client",
-    "See daily priorities and reminders",
-    "Creates focus and execution clarity.",
-  ],
-  [
-    "Client Workout Screen",
-    "Client",
-    "Follow assigned sessions with videos",
-    "Improves form quality and completion.",
-  ],
-  [
-    "Client Diet Screen",
-    "Client",
-    "Review meals, macros, calories",
-    "Makes nutrition adherence measurable.",
-  ],
-  [
-    "Client Profile Screen",
-    "Client",
-    "Track milestones and account status",
-    "Builds motivation through visible progress.",
-  ],
-  [
-    "Weight Log Modal",
-    "Client",
-    "Enter and update bodyweight",
-    "Feeds weekly progress intelligence.",
-  ],
-  [
-    "Add/Edit Workout Modal",
-    "Coach/Admin",
-    "Customize workout structure",
-    "Supports personalized program design.",
-  ],
-  [
-    "Add/Edit Diet Modal",
-    "Coach/Admin",
-    "Edit meal plans and macros",
-    "Keeps nutrition plans adaptive and precise.",
-  ],
+const screenGallery = [
+  {
+    src: "/screens/login.png",
+    title: "Login",
+    audience: "Client + Coach",
+    description: "Branded sign-in with role-based handoff.",
+  },
+  {
+    src: "/screens/coach-dashboard.png",
+    title: "Coach Dashboard",
+    audience: "Coach / Admin",
+    description: "Clients, upcoming sessions, and quick actions.",
+  },
+  {
+    src: "/screens/schedule-session.png",
+    title: "Schedule Session",
+    audience: "Coach / Admin",
+    description: "Book sessions and notify clients.",
+  },
+  {
+    src: "/screens/plans.png",
+    title: "Subscription Plans",
+    audience: "Coach / Admin",
+    description: "Choose the plan that fits your business.",
+  },
+  {
+    src: "/screens/diets.png",
+    title: "Manage Diets",
+    audience: "Coach / Admin",
+    description: "Build a meal library and assign plans to clients.",
+  },
+  {
+    src: "/screens/create-meal-plan.png",
+    title: "Create Meal Plan",
+    audience: "Coach / Admin",
+    description: "Set calorie targets and adjust macronutrients.",
+  },
+  {
+    src: "/screens/weight-log.png",
+    title: "Log or Edit Weight",
+    audience: "Client",
+    description: "Pick a date and save your weight.",
+  },
 ];
 
 const faqs = [
@@ -283,7 +264,37 @@ function App() {
     );
 
     elements.forEach((element) => observer.observe(element));
+
+    // Stagger reveal delays for direct grid children
+    document.querySelectorAll("[data-reveal-child]").forEach((child) => {
+      const peers = [
+        ...child.parentElement.querySelectorAll(":scope > [data-reveal-child]"),
+      ];
+      const idx = peers.indexOf(child);
+      child.style.setProperty("--reveal-delay", `${Math.max(idx, 0) * 70}ms`);
+    });
+
     return () => observer.disconnect();
+  }, []);
+
+  // Mouse-tracked spotlight glow on cards
+  useEffect(() => {
+    const cards = document.querySelectorAll(
+      ".panel, .comparison-card, .feature-card, .screen-card, .faq-card, .video-panel, .cta, .pill-card, .glass-card",
+    );
+
+    const onMove = (event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      event.currentTarget.style.setProperty("--mx", `${x}%`);
+      event.currentTarget.style.setProperty("--my", `${y}%`);
+    };
+
+    cards.forEach((card) => card.addEventListener("pointermove", onMove));
+    return () => {
+      cards.forEach((card) => card.removeEventListener("pointermove", onMove));
+    };
   }, []);
 
   useEffect(() => {
@@ -410,7 +421,7 @@ function App() {
           </div>
 
           <div className="hero-grid" aria-label="CubeFit previews">
-            <article className="glass-card mockup">
+            <article className="glass-card mockup" data-reveal-child>
               <p className="card-tag">Coach Command</p>
               <h3>Dashboard Overview</h3>
               <p>
@@ -418,7 +429,7 @@ function App() {
                 in one high-clarity control panel.
               </p>
             </article>
-            <article className="glass-card mockup accent">
+            <article className="glass-card mockup accent" data-reveal-child>
               <p className="card-tag">Client Execution</p>
               <h3>Daily Training View</h3>
               <p>
@@ -426,7 +437,7 @@ function App() {
                 structure, and completion confidence.
               </p>
             </article>
-            <article className="glass-card mockup">
+            <article className="glass-card mockup" data-reveal-child>
               <p className="card-tag">Nutrition Precision</p>
               <h3>Meal & Macro Cards</h3>
               <p>
@@ -445,7 +456,7 @@ function App() {
             </h2>
           </div>
           <div className="split-grid">
-            <article className="panel">
+            <article className="panel" data-reveal-child>
               <h3>Coach / Admin Flow</h3>
               <p>
                 Configure system access, onboard members, assign plans, and
@@ -458,7 +469,7 @@ function App() {
                 <li>Analyze weight, adherence, and weekly progress data.</li>
               </ol>
             </article>
-            <article className="panel">
+            <article className="panel" data-reveal-child>
               <h3>Client Flow</h3>
               <p>
                 Receive structured plans, execute daily actions, log progress,
@@ -483,7 +494,7 @@ function App() {
           </div>
           <div className="pill-grid">
             {coachTools.map((item) => (
-              <article key={item} className="pill-card">
+              <article key={item} className="pill-card" data-reveal-child>
                 <span className="status-dot" aria-hidden="true" />
                 <p>{item}</p>
               </article>
@@ -498,7 +509,7 @@ function App() {
           </div>
           <div className="pill-grid">
             {clientTools.map((item) => (
-              <article key={item} className="pill-card">
+              <article key={item} className="pill-card" data-reveal-child>
                 <span className="status-dot" aria-hidden="true" />
                 <p>{item}</p>
               </article>
@@ -517,7 +528,9 @@ function App() {
                 key={feature.id}
                 id={feature.id}
                 className="feature-card"
+                data-reveal-child
               >
+                <FeatureIcon name={feature.id} />
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
                 <ul>
@@ -591,7 +604,7 @@ function App() {
             <h2>Manual coaching creates friction. CubeFit creates momentum.</h2>
           </div>
           <div className="comparison-grid">
-            <article className="comparison-card muted">
+            <article className="comparison-card muted" data-reveal-child>
               <h3>Manual Coaching</h3>
               <ul>
                 <li>Scattered notes and chat threads</li>
@@ -600,7 +613,7 @@ function App() {
                 <li>Difficult client scaling</li>
               </ul>
             </article>
-            <article className="comparison-card accent-card">
+            <article className="comparison-card accent-card" data-reveal-child>
               <h3>CubeFit Platform</h3>
               <ul>
                 <li>Unified workouts, meals, and progress data</li>
@@ -617,20 +630,25 @@ function App() {
             <p className="eyebrow">Screen Gallery</p>
             <h2>Core app screens mapped across the full user journey.</h2>
           </div>
-          <div className="screen-grid">
-            {screens.map(([name, audience, action, impact]) => (
-              <article key={name} className="screen-card">
-                <div className="device-notch" aria-hidden="true" />
-                <h3>{name}</h3>
-                <p>
-                  <strong>Who uses it:</strong> {audience}
-                </p>
-                <p>
-                  <strong>Action:</strong> {action}
-                </p>
-                <p>
-                  <strong>Why it matters:</strong> {impact}
-                </p>
+          <div className="screens-gallery">
+            {screenGallery.map((screen) => (
+              <article
+                key={screen.title}
+                className="screen-mockup"
+                data-reveal-child
+              >
+                <div className="phone-frame">
+                  <img
+                    src={screen.src}
+                    alt={`${screen.title} — CubeFit screen`}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="screen-meta">
+                  <span className="screen-meta-tag">{screen.audience}</span>
+                  <strong>{screen.title}</strong>
+                  <p>{screen.description}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -668,7 +686,7 @@ function App() {
           </div>
           <div className="faq-grid">
             {faqs.map((faq) => (
-              <article key={faq.q} className="faq-card">
+              <article key={faq.q} className="faq-card" data-reveal-child>
                 <h3>{faq.q}</h3>
                 <p>{faq.a}</p>
               </article>
