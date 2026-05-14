@@ -139,6 +139,9 @@ h4 {
 .brand-mark {
   width: 28px;
   height: 28px;
+  border-radius: 7px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .nav-links {
   display: flex;
@@ -846,7 +849,6 @@ section {
 }
 .tier {
   position: relative;
-  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 24px 28px;
@@ -863,8 +865,9 @@ section {
 .tier.featured {
   border-color: var(--indigo);
   background: linear-gradient(135deg, rgba(90, 91, 255, 0.08), rgba(90, 91, 255, 0.02));
+  margin-top: 8px;
 }
-.tier-badge {
+.tier .tier-badge {
   position: absolute;
   top: -10px;
   left: 24px;
@@ -876,6 +879,7 @@ section {
   letter-spacing: 0.1em;
   border-radius: 999px;
   font-weight: 600;
+  z-index: 2;
 }
 .tier-name {
   font-family: var(--display);
@@ -966,7 +970,7 @@ footer {
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.8fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 50px;
 }
@@ -1401,7 +1405,7 @@ footer {
     text-align: left;
   }
   .tier.featured {
-    padding-top: 26px;
+    margin-top: 14px;
   }
 }
 @media (max-width: 420px) {

@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
+const APP_STORE_URL = "https://apps.apple.com/mk/app/cubefitapp/id6761562082";
+
 const navLinks = [
   { id: "features", label: "Features" },
   { id: "coach", label: "For coaches" },
@@ -27,7 +29,7 @@ const mealImportPreviewRow =
 const faqs = [
   {
     q: "Who is CubeFit built for?",
-    a: "CubeFit is built for personal trainers, studio owners, and coaches who want structured training, nutrition, and measurable client progress in one premium system.",
+    a: "CubeFit is built for personal trainers and coaches who want structured training, nutrition, and measurable client progress in one premium system.",
   },
   {
     q: "Can coaches manage both workouts and nutrition?",
@@ -69,7 +71,6 @@ const clientFeatures = [
   "Personal workout & diet feed",
   "Daily weight log + history graph",
   "Streak counter & gentle nudges",
-  "Direct messaging with their coach",
 ];
 
 const featureSections = [
@@ -212,8 +213,8 @@ const featureSections = [
       },
       {
         icon: "doc",
-        title: "Save as template",
-        body: "Fat-loss, lean bulk, cut prep — save your favorite splits as reusable starting points.",
+        title: "Macro coaching cues",
+        body: "Every slider explains what the macro does — building muscle, energy, hormones — so clients understand the why behind the split.",
       },
     ],
     chips: [
@@ -322,26 +323,16 @@ const footerCols = [
     links: [
       { label: "Features", href: "#features" },
       { label: "Pricing", href: "#pricing" },
-      { label: "Changelog", href: "#" },
-      { label: "Roadmap", href: "#" },
+      { label: "FAQ", href: "#faq" },
     ],
   },
   {
     title: "For trainers",
     links: [
-      { label: "Coach guide", href: "#" },
-      { label: "Template library", href: "#" },
-      { label: "Community", href: "#" },
-      { label: "Help center", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "#" },
-      { label: "Contact", href: "#" },
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
+      { label: "Coach tools", href: "#coach" },
+      { label: "Meal import", href: "#meal-import" },
+      { label: "Meal template", href: "/templates/cubefit-meal-import-template.csv" },
+      { label: "Get the app", href: APP_STORE_URL },
     ],
   },
 ];
@@ -554,31 +545,13 @@ function Icon({ name, size = 14, stroke = 2 }) {
 
 function BrandMark({ size = 28 }) {
   return (
-    <svg
+    <img
       className="brand-mark"
+      src="/2.png"
+      alt="CubeFit logo"
       width={size}
       height={size}
-      viewBox="0 0 100 100"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="lgCoral" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor="#ff6a4a" />
-          <stop offset="100%" stopColor="#d83a23" />
-        </linearGradient>
-        <linearGradient id="lgIndigo" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor="#7a7bff" />
-          <stop offset="100%" stopColor="#3d3eb8" />
-        </linearGradient>
-        <linearGradient id="lgOrange" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor="#ffa05e" />
-          <stop offset="100%" stopColor="#e36a18" />
-        </linearGradient>
-      </defs>
-      <polygon points="50,8 88,30 50,52 12,30" fill="url(#lgCoral)" />
-      <polygon points="50,52 88,30 88,74 50,96" fill="url(#lgIndigo)" />
-      <polygon points="50,52 50,96 12,74 12,30" fill="url(#lgOrange)" />
-    </svg>
+    />
   );
 }
 
@@ -718,7 +691,12 @@ export default function App() {
             ))}
           </div>
           <div className="nav-right">
-            <a href="#cta" className="nav-cta">
+            <a
+              href={APP_STORE_URL}
+              className="nav-cta"
+              target="_blank"
+              rel="noreferrer"
+            >
               Get the app
               <Arrow />
             </a>
@@ -771,7 +749,13 @@ export default function App() {
                   {link.label}
                 </a>
               ))}
-              <a href="#cta" className="btn-primary" onClick={closeMenu}>
+              <a
+                href={APP_STORE_URL}
+                className="btn-primary"
+                target="_blank"
+                rel="noreferrer"
+                onClick={closeMenu}
+              >
                 Get the app
                 <Arrow size={16} />
               </a>
@@ -793,31 +777,25 @@ export default function App() {
               <br />
               <span className="accent-coral">Admin</span> less.
               <br />
-              Grow your <span className="accent-indigo">studio</span>.
+              Grow your <span className="accent-indigo">business</span>.
             </h1>
             <p className="hero-sub">
               CubeFit is the all-in-one platform where trainers build meal plans, program workouts,
               schedule sessions, and track every client — from a single dashboard on your phone.
             </p>
             <div className="hero-ctas">
-              <a href="#cta" className="btn-primary">
-                Start 14-day free trial
+              <a
+                href={APP_STORE_URL}
+                className="btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Get the app
                 <Arrow size={16} />
               </a>
               <a href="#features" className="btn-secondary">
                 See it in action
               </a>
-            </div>
-            <div className="hero-trust">
-              <div className="stack">
-                <span className="avatar a1">IK</span>
-                <span className="avatar a2">MP</span>
-                <span className="avatar a3">MI</span>
-                <span className="avatar a4">+4</span>
-              </div>
-              <span>
-                Trusted by trainers managing <strong>2,400+ clients</strong>
-              </span>
             </div>
           </div>
 
@@ -881,7 +859,7 @@ export default function App() {
                 <span className="dot" />
                 For the coach
               </span>
-              <h3>Run your studio from your pocket.</h3>
+              <h3>Run your business from your pocket.</h3>
               <p>
                 Onboard clients, program workouts, write diet plans, and book sessions — without
                 spreadsheets, WhatsApp threads, or a desk.
@@ -1119,18 +1097,28 @@ export default function App() {
             Stop juggling tools
           </span>
           <h2>
-            Run your studio from <em>one app.</em>
+            Run your business from <em>one app.</em>
           </h2>
           <p>
             Sign up in under a minute. Import your clients, plug in your meal library, and book your
             first session today.
           </p>
           <div className="hero-ctas">
-            <a href="#" className="btn-primary">
-              Start free trial
+            <a
+              href={APP_STORE_URL}
+              className="btn-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Get the app
               <Arrow size={16} />
             </a>
-            <a href="#" className="btn-secondary">
+            <a
+              href={APP_STORE_URL}
+              className="btn-secondary"
+              target="_blank"
+              rel="noreferrer"
+            >
               <AppleGlyph />
               Download for iOS
             </a>
@@ -1154,11 +1142,21 @@ export default function App() {
               <div key={col.title} className="footer-col">
                 <h5>{col.title}</h5>
                 <ul>
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <a href={link.href}>{link.label}</a>
-                    </li>
-                  ))}
+                  {col.links.map((link) => {
+                    const isExternal = link.href.startsWith("http");
+                    const isDownload = link.href.endsWith(".csv");
+                    return (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+                          {...(isDownload ? { download: true } : {})}
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
